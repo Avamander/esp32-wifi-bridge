@@ -130,17 +130,17 @@ impl From<Bridge<Idle>> for Bridge<EthReady> {
             pins.gpio25, // RMII RDX0
             pins.gpio26, // RMII RDX1
             pins.gpio27, // RMII CRS DV
-            pins.gpio23, // WT32-ETH01 SMI MDC
+            pins.gpio23, // T-ETH-Lite ETH_MDC_PIN (SMI MDC)
             pins.gpio22, // EMII TXD1
             pins.gpio21, // RMII TX EN
             pins.gpio19, // RMII TXD0
-            pins.gpio18, // WT32-ETH01 SMI MDIO
+            pins.gpio18, // T-ETH-Lite ETH_MDIO_PIN (SMI MDIO)
             RmiiClockConfig::<gpio::Gpio0, gpio::Gpio16, gpio::Gpio17>::Input(
-                pins.gpio0, // WT32-ETH01 external clock
+                pins.gpio0, // T-ETH-Lite ETH_CLK_MODE (0)
             ),
-            Some(pins.gpio16), // WT32-ETH01 PHY reset
-            RmiiEthChipset::LAN87XX,
-            Some(1), // WT32-ETH01 PHY address
+            Some(pins.gpio12), // T-ETH-Lite PHY reset
+            RmiiEthChipset::RTL8201,
+            Some(u32::MAX), // T-ETH-Lite PHY address (autodetect)
             val.state.sysloop.clone(),
         )
         .expect("Failed to init EthDriver!");
